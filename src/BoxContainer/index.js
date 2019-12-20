@@ -1,6 +1,6 @@
-/*
 
-<div class={styles.container}> <div/>
+import { BoxContainer } from './BoxContainer'
 
-
-*/
+export {
+    BoxContainer
+}
