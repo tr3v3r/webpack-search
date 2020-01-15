@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import { Box, BoxContainer, Form } from './components'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+
+function  App ()  {
+  const [data, setData] = useState([])
+  const [inputValue, setValue] = useState('')
+
+    const onSubmit = () => {
+      setData(prevData => [...data, inputValue])
+    }
+
+    const filteredData = data.filter(text => text.includes(inputValue))
+   
+    const dataIsEmpty = filteredData.length === 0
+
+    return (
+      <div className="App">
+      <Form onChange={setValue} dataIsEmpty={dataIsEmpty} inputValue={inputValue} onSubmit={onSubmit} />
+      <BoxContainer>
+        {
+          filteredData.map(text => <Box text={text} /> )
+        }          
+      </BoxContainer>
+      </div>
+    );
+
+
+   
+  }
+
 
 export default App;
